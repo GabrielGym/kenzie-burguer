@@ -6,11 +6,12 @@ import { StyledHeader } from './style';
 import LogoKenzieBurguer from '../../assets/LogoKenzieBurguer.svg';
 import { StyledContainer } from '../../styles/grid';
 import { VerificationModalContext } from '../../contexts/Verifications';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
   const { openModal } = useContext(VerificationModalContext);
+  const navigate = useNavigate()
   
   return (
     <StyledHeader>
@@ -32,7 +33,11 @@ const Header = () => {
               >
                 <MdShoppingCart size={28} />
               </button>
-              <button type='button'>
+              <button type='button' onClick={() => {
+                window.localStorage.removeItem('@USER')
+                window.localStorage.removeItem('@TOKEN')
+                navigate('/')
+              }}>
                 <MdLogout size={28} />
               </button>
             </div>
