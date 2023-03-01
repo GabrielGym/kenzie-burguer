@@ -4,12 +4,18 @@ import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from './styles/theme';
 import App from './App';
+import { VerificationModalProvider } from './contexts/Verifications';
+import { GetProductsProvider } from './contexts/GetProducts';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={mainTheme}>
-        <App />
+        <VerificationModalProvider>
+          <GetProductsProvider>
+            <App />
+          </GetProductsProvider>
+        </VerificationModalProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

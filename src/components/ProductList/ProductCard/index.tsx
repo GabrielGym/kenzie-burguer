@@ -1,18 +1,23 @@
 import { StyledProductCard } from './style';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
+import { ArrayProducts } from '../../../contexts/GetProducts';
 
-const ProductCard = () => (
+interface productsListProps {
+  productsList: ArrayProducts
+}
+
+const ProductCard = ({ productsList }: productsListProps) => (
   <StyledProductCard>
     <div className='imageBox'>
-      <img src='https://i.imgur.com/Vng6VzV.png' alt='Hamburguer' />
+      <img src={productsList.img} alt='Hamburguer' />
     </div>
     <div className='content'>
       <StyledTitle tag='h3' $fontSize='three'>
-        Hamburguer
+        {productsList.name}
       </StyledTitle>
-      <StyledParagraph className='category'>Sanduíches</StyledParagraph>
-      <StyledParagraph className='price'>R$ 14,00</StyledParagraph>
+      <StyledParagraph className='category'>{productsList.category}</StyledParagraph>
+      <StyledParagraph className='price'>R$ {productsList.price}</StyledParagraph>
       <StyledButton $buttonSize='medium' $buttonStyle='green'>
         Adicionar
       </StyledButton>
